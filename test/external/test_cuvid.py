@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import unittest
 from tinygrad import Device
-from tinygrad.runtime.ops_nv import CUVID_AVAILABLE
-from tinygrad.runtime.support.nv.cuvid import CUVIDDecoder, cudaVideoCodec
+from tinygrad.runtime.support.nv.video.cuvid_core import _libcuvid, cudaVideoCodec
+from tinygrad.runtime.support.nv.video.cuvid import CUVIDDecoder
+
+CUVID_AVAILABLE = _libcuvid is not None
 
 @unittest.skipUnless(CUVID_AVAILABLE, "CUVID library not available")
 class TestCUVIDDecoder(unittest.TestCase):
