@@ -1,14 +1,16 @@
 from __future__ import annotations
+import sys
 import ctypes
 from enum import IntEnum
 from ctypes import POINTER, c_int, c_uint, c_void_p, c_ulonglong
 
 # Load CUVID library
 _libcuvid = None
-try:
-    _libcuvid = ctypes.CDLL("libnvcuvid.so.1")
-except OSError:
-    pass
+if sys.platform == "linux":  # CUVID is only supported on Linux
+    try:
+        _libcuvid = ctypes.CDLL("libnvcuvid.so.1")
+    except OSError:
+        pass
 
 class cudaVideoCodec(IntEnum):
     """Video codec enums supported by NVDEC"""

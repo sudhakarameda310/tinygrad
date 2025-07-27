@@ -1,4 +1,5 @@
 from __future__ import annotations
+import sys
 import ctypes
 from typing import Optional
 from tinygrad.helpers import init_c_var, init_c_struct_t
@@ -22,9 +23,17 @@ class CUVIDDecoder:
             codec: Video codec to decode (default: HEVC)
             max_width: Maximum video width to support (default: 3840/4K)
             max_height: Maximum video height to support (default: 2160/4K)
+            
+        Raises:
+            RuntimeError: If CUVID is not available on this platform
+            RuntimeError: If CUDA device is not available
         """
+        if not sys.platform == "linux":
+            raise RuntimeError("CUVID is only supported on Linux")
         if _libcuvid is None:
             raise RuntimeError("CUVID library not available")
+        if dev is None:
+            raise RuntimeError("No CUDA device available")
 
         self.dev = dev
         self.codec = codec
