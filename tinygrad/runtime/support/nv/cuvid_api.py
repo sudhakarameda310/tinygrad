@@ -1,6 +1,5 @@
 import ctypes
-from typing import Optional
-from ctypes import POINTER, c_int, c_uint, c_void_p, c_ulonglong, Structure
+from ctypes import POINTER, c_int, c_uint, c_void_p, c_ulonglong
 
 # CUVID Types
 CUvideodecoder = c_void_p

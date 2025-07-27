@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 import unittest
-import numpy as np
-from pathlib import Path
 from tinygrad import Device
-from tinygrad.tensor import Tensor
 from tinygrad.runtime.ops_nv import CUVID_AVAILABLE
 from tinygrad.runtime.support.nv.cuvid import CUVIDDecoder, cudaVideoCodec
 
